@@ -26,6 +26,9 @@ so they will override whatever values you have in the configuration file. E.g.:
       -t MariaDB -u user2 -p pwd2 -h localhost -P 3306 -d db2 \
       -q "SELECT empid, givenname, familyname FROM employee"
 
+If there is only one type (-t), host (-h) or port (-P) parameter, then it will
+assume those should be used for both data sources.
+
 You can also specify a different configuration file using the -f option:
 
     ./datadiff -f config.cfg
