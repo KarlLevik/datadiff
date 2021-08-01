@@ -230,6 +230,30 @@ int main(int argc, char* argv[])
   if (!q1.empty())
     query1 = q1;
 
+  if (!t2.empty())
+    type2 = t2;
+  if (!u2.empty())
+    user2 = u2;
+  if (!p2.empty())
+    password2 = p2;
+  if (!d2.empty())
+    database2 = d2;
+  if (!h2.empty())
+    host2 = h2;
+  if (!P2.empty())
+    port2 = P2;
+  if (!q2.empty())
+    query2 = q2;
+
+  // If the -t (type) or -h (host) or -P (port) parameters for data source 2
+  // are missing, use the ones given for data source 1
+  if (type2.empty())
+    type2 = type1;
+  if (host2.empty())
+    host2 = host1;
+  if (port2.empty())
+    port2 = port1;
+
   using namespace N;
 
   DBSource *src = nullptr;
