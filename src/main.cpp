@@ -256,10 +256,13 @@ int main(int argc, char* argv[])
 
   using namespace N;
 
-  DBSource *src = nullptr;
+  DBSource *src1 = nullptr;
   
   if (type1.compare("MariaDB") == 0) {
-    src = new MariaDBSource(user1, password1, database1, host1, port1);
+    src1 = new MariaDBSource(user1, password1, database1, host1, port1);
+    if (src1 != nullptr) {
+      src1->retrieve(query1, "");
+    }
   }
   else if (type1.compare("OracleDB") == 0) {
     cerr << "OracleDB not implemented" << endl;
@@ -269,9 +272,31 @@ int main(int argc, char* argv[])
     cerr << "Database " << type1 << " not recognised" << endl;
     exit(EXIT_FAILURE);
   }
-  if (src != nullptr) {
-    src->retrieve(query1, "");
-    delete src;
+
+  DBSource *src2 = nullptr;
+
+  if (type2.compare("MariaDB") == 0) {
+    src2 = new MariaDBSource(user2, password2, database2, host2, port2);
+    if (src2 != nullptr) {
+      src2->retrieve(query2, "");
+    }
   }
+  else if (type2.compare("OracleDB") == 0) {
+    cerr << "OracleDB not implemented" << endl;
+    exit(EXIT_FAILURE);
+  }
+  else {
+    cerr << "Database " << type2 << " not recognised" << endl;
+    exit(EXIT_FAILURE);
+  }
+
+  // Clean up
+  if (src1 != nullptr) {
+    delete src1;
+  }
+  if (src2 != nullptr) {
+    delete src2;
+  }
+
   return 0;
 }
