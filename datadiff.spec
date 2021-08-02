@@ -3,7 +3,7 @@ Version: 1
 Release: 1%{?dist}
 Summary: Retrieves data from two data sources, compares the contents of the result sets, and generates SQL statements to cancel out the differences.
 
-License: Public Domain
+License: BSD 2-Clause License
 Source0: datadiff
 
 %description
