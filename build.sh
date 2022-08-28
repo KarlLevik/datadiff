@@ -5,7 +5,7 @@
 #
 # Install the packaging tools and add your account to the mock group:
 #
-# dnf install fedora-packager fedora-review
+# dnf install fedora-packager fedora-review clang
 # usermod -a -G mock yourusername
 #
 # (Log out and back in again for the changes to take effect)
@@ -18,6 +18,7 @@ name=datadiff
 dir=dist/${name}
 
 cd src
+mkdir -p obj
 make
 cd ..
 
@@ -27,6 +28,6 @@ if [ $(uname -o) == 'GNU/Linux' ]; then
   mkdir -p ${dir}
   cp ${name}.spec ${dir}/.
   cp ${name} ${dir}/.
-  cd ${dir} && fedpkg --release f34 local
+  cd ${dir} && fedpkg --release f36 local
   echo "Done"
 fi
